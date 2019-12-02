@@ -80,7 +80,18 @@ cv::Mat_<float> shrinkImage(const cv::Mat_<float>& src, const cv::Mat_<float>& k
 }
 
 int main(int argc, char** argv ) {
-    string fileName = "./Lenna.png";
+    string fileName;// = "./Lenna.png";
+
+    if (argc < 2)
+    {
+        std::cout << "Give the path to the picture. ./main [Path to the Picture]" << std::endl;
+        return -1;
+    }
+    else
+    {
+        fileName = argv[1];
+    }
+    
     Mat_<float> smooth = Mat::ones(3, 3, CV_32FC1)/9.0f;
     Mat_<float> sharpen = Mat::zeros(3, 3, CV_32FC1);
 
@@ -94,15 +105,16 @@ int main(int argc, char** argv ) {
     cv::imshow("source", img);
     Mat resConvolution = convolutionCorrelation(img, sharpen, true);
     resConvolution.convertTo(resConvolution, IMREAD_GRAYSCALE);
-    cv::imshow("Convolution", resConvolution);
+    cv::imshow("Sharpen using Convolution", resConvolution);
     Mat resCorrelation = convolutionCorrelation(img, sharpen, false);
     resCorrelation.convertTo(resCorrelation, IMREAD_GRAYSCALE);
-    cv::imshow("Correlation", resCorrelation);
+    cv::imshow("Sharpen using Correlation", resCorrelation);
     
     Mat shrink = shrinkImage(img, smooth, false);
     shrink.convertTo(shrink, IMREAD_GRAYSCALE);
     cv::imshow("shrink", shrink);
 
+    std::cout << "Press any key to exit..." << std::endl;
     waitKey(0);
 
     return 0;

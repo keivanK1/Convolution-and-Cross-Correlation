@@ -1,6 +1,6 @@
 # Convolution and Cross-Correlation
 
-Implementation of Convolution (and Cross-Correlation) in C++.
+Implementation of Convolution (and Cross-Correlation) in C++. It will sharpen the image as well as shrink it.
 
 ## Requirements
 
@@ -11,6 +11,8 @@ Implementation of Convolution (and Cross-Correlation) in C++.
 
 * Clone the repository
 
-* Run it:
+* Run `cmake` either in project directory or ./build to generate executable file
+
+*  and the run it:
 
         ./main [Path to the Picture]
